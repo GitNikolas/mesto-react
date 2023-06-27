@@ -2,7 +2,6 @@ const Card = ({ card, onCardClick}) => {
 
     function handleClick() {
     onCardClick(card);
-    card.isOpen = true;
   }
 
   return (
