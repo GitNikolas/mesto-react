@@ -5,27 +5,21 @@ import SubmitButton from "../UI/SubmitButton/SubmitButton";
 
 const AddPlacePopup = ({ isOpen, onClose, onAddPlace}) => {
 
-const [placeName, setPlaceName] = React.useState('');
-const [placeUrl, setPlaceUrl] = React.useState('');
+  const [values, setValues] = React.useState({ name:'', link:''});
 
-function handlePlaceNameChange(event) {
-  setPlaceName(event.target.value);
-}
+const handleChange = (event) => {
+  const { name, value } = event.target;
 
-function handlePlaceUrlChange(event) {
-  setPlaceUrl(event.target.value);
+    setValues((state) => ({
+    ...state,
+    [name]:value,
+  }))
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  onAddPlace(
-    {
-      name:placeName,
-      link:placeUrl,
-    }
-  );
-  setPlaceName('');
-  setPlaceUrl('');
+  onAddPlace(values);
+  setValues({name:'' , link:''});
 }
 
 return (
@@ -43,9 +37,10 @@ return (
       minLength={2}
       maxLength={30}
       name="name"
+      type="text"
       placeholder="Название"
-      value={placeName}
-      onChange={handlePlaceNameChange}
+      onChange={handleChange}
+      value={values.name}
     />
 
     <Input
@@ -54,9 +49,10 @@ return (
       minLength={2}
       maxLength={300}
       name="link"
+      type="url"
       placeholder="Ссылка на картинку"
-      value={placeUrl}
-      onChange={handlePlaceUrlChange}
+      onChange={handleChange}
+      value={values.link}
     />
 
     <SubmitButton>Создать</SubmitButton>

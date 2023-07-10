@@ -13,7 +13,6 @@ const PopupWithForm = ({onChange, ...props}) => {
             className="popup__form"
             name={props.name}
             onSubmit={props.onSubmit}
-            noValidate
           >
             {props.children}
           </form>

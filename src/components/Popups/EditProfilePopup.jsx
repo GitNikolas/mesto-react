@@ -28,6 +28,11 @@ const EditProfilePopup = ({isOpen, onClose, onUpdateUser}) => {
 
   }
 
+  React.useEffect( () => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [isOpen])
+
   return (
     <PopupWithForm
     name='profile-edit'

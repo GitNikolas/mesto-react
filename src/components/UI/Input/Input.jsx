@@ -11,7 +11,7 @@ const Input = React.forwardRef( ({onChange, ...props}, ref) => {
       <input
         {...props}
         autoComplete="off"
-        required=""
+        required
         onChange={handleChange}
         ref={ref}
       />

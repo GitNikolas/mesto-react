@@ -1,5 +1,4 @@
 import React from 'react';
-import '../index.css';
 import Header from './Header/Header.jsx';
 import Main from './Main/Main.jsx';
 import Footer from './Footer/Footer.jsx';
@@ -115,7 +114,6 @@ function handleAddPlaceSubmit(cardData) {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="App">
         <div className="flex-container">
 
           <Header />
@@ -162,7 +160,6 @@ function handleAddPlaceSubmit(cardData) {
           onClose={closeAllPopups}
         />
 
-      </div>
     </CurrentUserContext.Provider>
 
 
