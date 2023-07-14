@@ -11,7 +11,7 @@ const Card = ({ card, onCardClick, currentUser, onCardLike, onCardDislike, onCar
     onCardClick(card);
   }
 
-  function handleDeleteClick () {
+  function handleDeleteClick() {
     onCardDelete(card);
   }
 
