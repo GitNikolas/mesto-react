@@ -124,7 +124,6 @@ function handleAddPlaceSubmit(cardData) {
   })
   .catch((err) => console.error(`Ошибка: ${err}`));
 }
-//удалить этот текст
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
