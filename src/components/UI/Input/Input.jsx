@@ -1,23 +1,24 @@
 import React from "react";
 
-const Input = (props) => {
+const Input = React.forwardRef( ({onChange, ...props}, ref) => {
+
+  function handleChange(event){
+    onChange(event);
+  }
+
   return (
     <>
       <input
-        id = {props.id}
-        className = {props.className}
+        {...props}
         autoComplete="off"
-        type={props.type}
-        minLength={props.minLength}
-        maxLength={props.maxLength}
-        name={props.name}
-        required=""
-        placeholder={props.placeholder}
+        required
+        onChange={handleChange}
+        ref={ref}
       />
       <span id={`error-${props.id}`} className="popup__error-message" />
     </>
 
   );
-}
+});
 
 export default Input;

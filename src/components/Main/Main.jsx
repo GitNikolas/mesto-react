@@ -1,42 +1,25 @@
 import React from "react";
-import api from "../../utils/Api";
 import Card from "../Card/Card";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Main = ({ onEditAvatar,onEditProfile,onAddPlace, onCardClick}) => {
+const Main = ({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDislike, onCardDelete}) => {
 
-  const [userName, setuserName] = React.useState('');
-  const [userDescription, setuserDescription] = React.useState('');
-  const [userAvatar, setuserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    Promise.all([api.getUserInformation(), api.getInitialCards()])
-
-    .then( ([dataUser, dataCard]) => {
-
-      setuserName(dataUser.name);
-      setuserDescription(dataUser.about);
-      setuserAvatar(dataUser.avatar);
-
-      setCards(dataCard);
-      })
-    .catch((err) => console.error(`Ошибка: ${err}`))
-  }, [])
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar"
-          style={{ backgroundImage: `url(${userAvatar})` }}
+          style={{ backgroundImage: `url(${currentUser?.avatar})` }}
           type="button"
           onClick={onEditAvatar}
         />
         <div className="profile__info">
           <h1 className="profile__name" >
-            {userName}
+            {currentUser?.name}
           </h1>
           <p className="profile__status" >
-            {userDescription}
+            {currentUser?.about}
           </p>
           <button
             aria-label="Редактировать профиль"
@@ -57,7 +40,14 @@ const Main = ({ onEditAvatar,onEditProfile,onAddPlace, onCardClick}) => {
           {cards.map((data) => {
             return (
               <li className="photo-card" key={data._id}>
-                <Card card={data} onCardClick={onCardClick} />
+                <Card
+                card={data}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDislike={onCardDislike}
+                currentUser={currentUser}
+                onCardDelete = {onCardDelete}
+                />
               </li>
             )
           })

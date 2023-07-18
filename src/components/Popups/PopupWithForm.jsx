@@ -1,6 +1,6 @@
 import React from "react";
 
-const PopupWithForm = (props) => {
+const PopupWithForm = ({onChange, ...props}) => {
 
   return (
     <div className={`popup popup_type_${props.name} ${props.isOpen ? `popup_open` : ''}`}>
@@ -12,7 +12,7 @@ const PopupWithForm = (props) => {
             id={props.formId}
             className="popup__form"
             name={props.name}
-            noValidate
+            onSubmit={props.onSubmit}
           >
             {props.children}
           </form>
@@ -23,3 +23,5 @@ const PopupWithForm = (props) => {
 }
 
 export default PopupWithForm;
+
+
